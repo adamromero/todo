@@ -1,9 +1,12 @@
 
 $lynch: #607d8b;
+$jelly-bean: #226f94;
 $alto: #dcdcdc;
+
 
 html, body {
 	margin: 0;
+	font-family: 'Roboto', sans-serif;
 }
 
 .header {
@@ -18,8 +21,13 @@ html, body {
 }
 
 .row {
-	display: inline-flex;
 	width: 100%;
+	margin: 0 0 15px;
+}
+
+.project-list__content {
+	padding: 20px 0 20px 45px;
+	border-bottom: 1px solid $alto;
 }
 
 .label {
@@ -34,8 +42,41 @@ html, body {
     padding: 8px;
     border-radius: 18px;
     cursor: pointer;
+    font-weight: bold;
+    display: inline-block;
+    color: #fff;
 }
 
 .button--primary {
 	background: $lynch;
+}
+
+.button--secondary {
+	background: $jelly-bean;
+}
+
+.project-list__item {
+	height: 36px;
+    overflow: hidden;
+    transition: all 0.3s;
+
+    &.expand {
+    	height: 111px;
+    	overflow: visible;
+    	transition: all 0.3s;
+    }
+}
+
+.modal {
+	display: none;
+	width: 500px;
+    height: 500px;
+    box-shadow: 2px 3px 18px;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    &.display {
+    	display: block;
+    }
 }
