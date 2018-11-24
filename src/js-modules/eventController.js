@@ -27,18 +27,13 @@ const eventController = (() => {
 			if (!event.target.matches('[data-action="expand"]')) return;
 			
 			let listItem = event.target.parentNode.parentNode.classList;
-			let list = List.create('List', false);
-			viewController.renderListInfo(list);
-
-			/*
 			if (listItem.contains('expand')) {
 				listItem.remove('expand');
 			} else {
 				listItem.add('expand');
 			}
-			*/
 
-		});
+		}, false);
 		
 	}
 
