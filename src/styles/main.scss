@@ -73,10 +73,19 @@ html, body {
     height: 500px;
     box-shadow: 2px 3px 18px;
     position: fixed;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, 0);
+    padding: 20px;
 
     &.display {
     	display: block;
     }
+}
+
+.modal-close {
+    float: right;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 8px;
 }

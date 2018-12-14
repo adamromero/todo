@@ -11,11 +11,18 @@
 	<div class="container">
 		<div class="row">
 			<div id="addProject" class="button button--primary" data-add="project">+</div>
-			<label class="label">Add new Project: </label>
+			<label class="label">Add new Project: </label> <input id="projectName" name="project" placeholder="Project Name" />
 		</div>
 		<div class="project-list"></div>
 	</div>
-	<div id="modal" class="modal"></div>
+	<div id="modal" class="modal">
+		<div id="modalClose" class="modal-close">X</div>
+		<div>
+			<div id="addList" class="button button--primary" data-action="add">+</div>
+			<label class="label">Add new List</label></div>
+		</div>
+		<div id="modalContent"></div>
+	</div>
 </div>
 <script src="bundle.js"></script>
 </body>

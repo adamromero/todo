@@ -3,42 +3,66 @@ import List from './list'
 import viewController from './viewController'
 
 const eventController = (() => {
+	let projectCollection = [];
+	const addProject = document.getElementById('addProject');
+	const addList = document.getElementById('addList');
+	const modal = document.getElementById('modal');
 
 	const init = () => {
-		const addProject = document.getElementById('addProject');
+		if (typeof retrieveProjectsFromStorage() !== "undefined" && retrieveProjectsFromStorage() !== null) {
+			projectCollection = JSON.parse(retrieveProjectsFromStorage());
+			viewController.renderSavedProjects(projectCollection);
+		}
 		
-
 		addProject.addEventListener('click', () => {
 			createProject();
 		});
-	
-		createList();
+
+		document.addEventListener('click', (e) => {
+			if (e.target.getAttribute('data-action') == 'expand') {
+				openProject();
+			}
+		});
+
+		document.addEventListener('click', (e) => {
+			if (e.target.id == 'modalClose') {
+				closeProject();
+			}
+		});
+
+		addList.addEventListener('click', () => {
+			createList();
+		});
+	}
+
+	const setProjectsToStorage = () => {
+		sessionStorage.setItem('projectCollection', JSON.stringify(projectCollection));
+	}
+
+	const retrieveProjectsFromStorage = () => {
+		return sessionStorage.getItem('projectCollection');
 	}
 
 	const createProject = () => {
-		let project = Project.create('Project');
+		let projectName = document.getElementById('projectName').value;
+		projectName = projectName !== '' ? projectName : 'Untitled Project';
+
+		let project = Project.create(projectName);
+		projectCollection.push(project);
 		viewController.renderProject(project);
+
+		setProjectsToStorage();
+	}
+
+	const openProject = () => {
+		modal.classList.add('display');
+	}
+
+	const closeProject = () => {
+		modal.classList.remove('display');
 	}
 
 	const createList = () => {
-		const expandList = document.querySelectorAll('[data-action="expand"]');
-
-		document.addEventListener('click', (event) => {
-			if (!event.target.matches('[data-action="expand"]')) return;
-			
-			let listItem = event.target.parentNode.parentNode.classList;
-			let list = List.create('List', false);
-			viewController.renderListInfo(list);
-
-			/*
-			if (listItem.contains('expand')) {
-				listItem.remove('expand');
-			} else {
-				listItem.add('expand');
-			}
-			*/
-
-		});
 		
 	}
 
